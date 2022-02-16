@@ -7,6 +7,9 @@ target/
 src/main/java/com/example/file_upload_demo/page/HomePage.java
 src/main/java/com/example/file_upload_demo/page/HomePage.html
 
+HomePage.java
+HomePage.html
+
 ### STS ###
 .apt_generated
 .classpath
