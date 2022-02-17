@@ -1,5 +1,8 @@
 package com.example.file_upload_demo.page;
 
+import com.example.file_upload_demo.service.IPredictionService;
+import org.apache.wicket.spring.injection.annot.SpringBean;
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
@@ -23,10 +26,16 @@ import org.wicketstuff.annotation.mount.MountPath;
 
 @MountPath("Upload")
 public class UploadPage extends WebPage{
+
+    @SpringBean
+    private IPredictionService predictionService;
+
     private FileUploadField uploadField;
     private File uploadDir;
 
+
     public UploadPage(){
+
         // Formを拡張したUpload用フォーム
         add(new UploadForm("uploadForm"));
 
@@ -77,6 +86,10 @@ public class UploadPage extends WebPage{
             var preModel = Model.of(pre);
             var preLavel = new Label("pre", preModel);
             item.add(preLavel);
+
+            int pre_num = Integer.parseInt(pre);
+
+            predictionService.registerPre(file.toString(), pre_num);
         }
     }
 
